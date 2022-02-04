@@ -1,0 +1,16 @@
+{% load static %}
+
+{% block scripts %}
+<script src = "{% static 'posts/details.js' %}" defer ></script>
+{% endblock scripts %}
+
+{% block title %}
+{{obj.title}} detail
+{% endblock title %}
+
+{% block content %}
+{{obj.title}}
+<hr>
+{{obj.body}}
+
+{% endblock content %}

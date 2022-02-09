@@ -12,7 +12,10 @@ const url = window.location.href
 
 
 const alertBox = document.getElementById('alert-box')
-console.log('csrf : ',csrf[0].value)
+console.log('csrf : ', csrf[0].value)
+
+
+    
 const getCookie = (name) => {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -29,6 +32,19 @@ const getCookie = (name) => {
     return cookieValue;
 }
 const csrftoken = getCookie('csrftoken');
+
+
+
+
+// const handleAlerts = (type, msg) => {
+//     alertBox.innerHTML = `
+//         <div class="alert alert-${type}" role ="alert" >
+//         ${msg}
+//         </div>
+//     `
+// }
+
+
 
 
 const likeUnlikePosts = ()=> {
@@ -70,7 +86,6 @@ const getData = () => {
             const data = response.data
             setTimeout(() => {
                 spinnerBox.classList.add('not-visible')
-                // spinnerBox.style.display = "none"
                 console.log(data)
                 data.forEach(el => {
                     postsBox.innerHTML += `
@@ -179,3 +194,10 @@ postForm.addEventListener('submit', e=>{
     })
 })
 getData()
+
+
+const deleted = localStorage.getItem('title')
+if (deleted) {
+    handleAlerts('danger', `deleted ${deleted}`)
+    localStorage.clear()
+}

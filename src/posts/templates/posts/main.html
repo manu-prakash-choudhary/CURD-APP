@@ -1,8 +1,13 @@
-    
     {% load static %}
     {% load crispy_forms_tags %}
+
+    {% block link %}
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'posts/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'posts/styles.css' %}">
+    {% endblock link %}
+
     {% block scripts %}
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="{% static 'posts/main.js' %}" defer></script>
@@ -15,41 +20,44 @@
     {% endblock title %}
 
     {% block content %}
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form  id ='post-form'>
-                            {% csrf_token %}
-                            {{form|crispy}}
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
-                                <button type="submit" class="btn btn-success">+ add</button>
-                            </div>
-                        </form>
-                    </div>
-                    
+    
+    <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <form  id ='post-form'>
+                        {% csrf_token %}
+                        {{form|crispy}}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
+                            <button type="submit" class="btn btn-success">+ add</button>
+                        </div>
+                    </form>
+                </div>
+                
             </div>
         </div>
+    </div>
 
-        <div id = 'alert-box'></div>
-        <button type="button" class="btn btn-info ms-5 mt-" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Add Post 
-        </button>
+    <div id = 'alert-box'></div>
+    <button type="button" class="btn btn-info ms-5 mt-" data-bs-toggle="modal" data-bs-target="#addPostModal">
+        Add Post 
+    </button>
 
 
-        <div id = 'posts-box' ></div>
-            <div id =  "spinnerBox" class='text-center'>
-                <div class="spinner-border" role="status"></div>
-            </div>
-        <div class = "text-center mb-3" id ='end-box' >
-            <button class = "btn btn-primary" id='load-more'>Load more</button>
+    <div id = 'posts-box' ></div>
+        <div id =  "spinnerBox" class='text-center'>
+            <div class="spinner-border" role="status"></div>
         </div>
+    <div class = "text-center mb-3" id ='end-box' >
+        <button class = "btn btn-primary" id='load-more'>Load more</button>
+    </div>
+
+    
     {% endblock content %}
 
 
